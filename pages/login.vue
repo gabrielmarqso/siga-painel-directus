@@ -44,6 +44,15 @@
     import { onMounted, ref } from 'vue'
     import { initFlowbite } from 'flowbite'
 
+
+    useHead({
+        title: 'Login - Cadastro PSA'
+    })
+
+    definePageMeta({
+        middleware: ["auth"]
+    });
+
     const consoleError = ref(false);
 
     let email = '';
@@ -59,7 +68,6 @@
         await router.push('/processos-seletivos');
     } catch (error) {
         consoleError.value = true;
-   
     }
     };
     

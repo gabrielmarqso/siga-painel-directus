@@ -21,6 +21,8 @@
     <span class="text-sm text-gray-700 dark:text-gray-400">
         <span class="font-semibold text-gray-900 dark:text-white">{{ (currentPage - 1) * itemsPerPage + 1 }}</span>-<span class="font-semibold text-gray-900 dark:text-white">{{ Math.min(currentPage * itemsPerPage, qtdProcessos) }}</span> de <span class="font-semibold text-gray-900 dark:text-white">{{ qtdProcessos }}</span> Processos Seletivos
     </span>
+
+    
     </div>
 
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -73,7 +75,10 @@
                     {{ processo.tipo_edital }}
                 </td>
                 <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-goias-400 dark:text-goias-500 hover:underline">Editar</a>
+
+                    <NuxtLink :to="`/processos-seletivos/${processo.id}`">
+                        <p class="font-medium text-goias-400 dark:text-goias-500 hover:underline">Editar</p>
+                    </NuxtLink>
                 </td>
             </tr>
             
@@ -101,6 +106,9 @@
     import { onMounted } from 'vue'
     import { initFlowbite } from 'flowbite'
 
+    useHead({
+        title: "Processos Seletivos de Alunos"
+    })
 
     onMounted(() => {
     initFlowbite();

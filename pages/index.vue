@@ -9,8 +9,11 @@
     const router = useRouter();
 
     definePageMeta({
-    middleware: ["auth"]
-    });
+        middleware: ["auth"]
+    })
+
+    const token = useDirectusToken();
+    const user = useDirectusUser();
 </script>
 
 

@@ -115,8 +115,8 @@
     console.log(expires);
 
     onMounted(() => {
-    initFlowbite();
-    })  
+        initFlowbite();
+    })
 
     const currentPage = ref(1);
     const itemsPerPage = ref(15);
@@ -150,7 +150,6 @@ interface Processos {
 }
 
 const { login } = useDirectusAuth();
-
 
 const fetchProcessos = async () => {
 

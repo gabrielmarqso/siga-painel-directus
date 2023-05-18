@@ -40,10 +40,11 @@
 
 <script setup lang="ts">
     const { login } = useDirectusAuth();
+    const { token } = useDirectusToken();
     const router = useRouter();
     import { onMounted, ref } from 'vue'
     import { initFlowbite } from 'flowbite'
-
+    
 
     useHead({
         title: 'Login - Cadastro PSA'
@@ -58,6 +59,7 @@
     let email = '';
     let password = '';
 
+
     onMounted(() => {
     initFlowbite();
     })  
@@ -70,6 +72,8 @@
         consoleError.value = true;
     }
     };
+
+
     
 </script>
 

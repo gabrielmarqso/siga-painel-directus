@@ -103,12 +103,16 @@
     const { getItems } = useDirectusItems();
     const router = useRouter();
 
+    const { expires } = useDirectusToken();
+
     import { onMounted } from 'vue'
     import { initFlowbite } from 'flowbite'
 
     useHead({
         title: "Processos Seletivos de Alunos"
     })
+
+    console.log(expires);
 
     onMounted(() => {
     initFlowbite();

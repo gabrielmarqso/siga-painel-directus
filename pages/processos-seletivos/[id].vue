@@ -32,7 +32,7 @@
                 <div class="grid gap-5 mb-5 md:grid-cols-2">
                     <div>
                         <label for="tipo-edital" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo do Edital</label>
-                        <select id="tipo-edital" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-goias-500 focus:border-goias-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <select v-model="processo.tipo_edital" id="tipo-edital" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-goias-500 focus:border-goias-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option selected>Escolha um tipo</option>
                             <option value="Novas Vagas">Novas Vagas</option>
                             <option value="Rematrícula">Rematrícula</option>
@@ -93,7 +93,7 @@
                 </div>
     
                 <div class="mb-6">
-                    <label for="arquivos" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Anexar arquivos</label>
+                    <label for="arquivos" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Arquivos</label>
                     <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="arquivos" type="file" multiple>
                 </div>
     
@@ -102,15 +102,13 @@
     
                     <label for="turmas" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Turmas</label>
     
-    
-                    
-                    <div id="turmas" class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                        <table  class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <div id="turmas" class="relative overflow-x-auto shadow-md sm:rounded-lg h-80 w-full overflow-scroll">
+                        <table class=" w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" class="p-4">
                                         <div class="flex items-center">
-                                            <input id="checkbox-all" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                            <input v-model="processo.turmas" id="checkbox-all" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                             <label for="checkbox-all" class="sr-only">checkbox</label>
                                         </div>
                                     </th>
@@ -131,104 +129,35 @@
                                     </th>
                                 </tr>
                             </thead>
+                            
                             <tbody>
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <tr
+                                    v-for="(turma, index) in turmas"
+                                    :key="index"
+                                    class=" bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="w-4 p-4">
                                         <div class="flex items-center">
-                                            <input id="checkbox-table-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                            <input v-model="processo.turmas" id="checkbox-table-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                             <label for="checkbox-table-1" class="sr-only">checkbox</label>
                                         </div>
                                     </td>
                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        
+                                        {{turma.Curso}}
                                     </th>
                                     <td class="px-6 py-4">
-                                        
+                                        {{ turma.Turno }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        
+                                        {{ turma.categoria }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <a href="#" class="font-medium text-goias-400 dark:text-blue-500 hover:underline"></a>
-                                    </td>
-                                </tr>
-    
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                    <td class="w-4 p-4">
-                                        <div class="flex items-center">
-                                            <input id="checkbox-table-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                            <label for="checkbox-table-1" class="sr-only">checkbox</label>
-                                        </div>
-                                    </td>
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Empreendedorismo
-                                    </th>
-                                    <td class="px-6 py-4">
-                                        Noturno
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        Qualificação
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        Online
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <a href="#" class="font-medium text-goias-400 dark:text-blue-500 hover:underline">Edit</a>
-                                    </td>
-                                </tr>
-    
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                    <td class="w-4 p-4">
-                                        <div class="flex items-center">
-                                            <input id="checkbox-table-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                            <label for="checkbox-table-1" class="sr-only">checkbox</label>
-                                        </div>
-                                    </td>
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Gestão de Negócios
-                                    </th>
-                                    <td class="px-6 py-4">
-                                        Noturno
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        Qualificação
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        Online
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <a href="#" class="font-medium text-goias-400 dark:text-blue-500 hover:underline">Edit</a>
-                                    </td>
-                                </tr>
-    
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                    <td class="w-4 p-4">
-                                        <div class="flex items-center">
-                                            <input id="checkbox-table-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                            <label for="checkbox-table-1" class="sr-only">checkbox</label>
-                                        </div>
-                                    </td>
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Programação de Computadores
-                                    </th>
-                                    <td class="px-6 py-4">
-                                        Noturno
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        Qualificação
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        Presencial
+                                        {{ turma.modalidade }}
                                     </td>
                                     <td class="px-6 py-4">
                                         <a href="#" class="font-medium text-goias-400 dark:text-blue-500 hover:underline">Editar</a>
                                     </td>
                                 </tr>
-                                
-                                
+           
                             </tbody>
                         </table>
                     </div>
@@ -324,7 +253,7 @@
         fetchTurmas();
     
     </script>
+
+<style scoped>
     
-    <style scoped>
-    
-    </style>
+</style>

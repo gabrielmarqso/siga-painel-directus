@@ -7,7 +7,6 @@
 
 <script setup>
     const router = useRouter();
-
     // definePageMeta({
     //     middleware: ["auth"]
     // })

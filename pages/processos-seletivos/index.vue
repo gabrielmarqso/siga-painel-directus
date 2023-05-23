@@ -191,26 +191,6 @@ const getTotalProcessos = async () => {
 
 const qtdProcessos = await getTotalProcessos();
 
-const pagina = ref(1);
-const servidores = ref({})
-
-async function carregaServidores(numPagina: number) {
-  useDirectusItems().getItems({
-      collection: "servidores",
-      params: {
-        limit: 10,
-        page: numPagina,
-        sort: "nome"
-      },
-    }).then((data) => servidores.value = data);
-}
-
-watch(
-  pagina,(newValue)=>carregaServidores(newValue)
-  ,{ immediate: true }
-)
-
-
 
 </script>
 

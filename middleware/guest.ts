@@ -4,9 +4,9 @@ export default defineNuxtRouteMiddleware((to) => {
     const auth = useAuth();
     const router = useRouter();
 
-    if (!auth.loggedIn) {
+    if (auth.loggedIn) {
         return router.push({
-            path: '/login',
+            path: '/processos-seletivos',
             query: {
                 next: to.path,
             },

@@ -4,7 +4,8 @@ export default defineNuxtConfig({
 
     modules: [
         '@nuxtjs/tailwindcss',
-        'nuxt-directus'
+        'nuxt-directus',
+        '@pinia/nuxt',
     ],
     directus: {
         url: "https://siga.go.gov.br/editais-psa/"

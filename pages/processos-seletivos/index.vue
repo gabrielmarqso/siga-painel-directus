@@ -99,6 +99,8 @@
 </template>
 
 <script setup lang="ts">
+
+
     import { ref , watch} from 'vue';
     const { getItems } = useDirectusItems();
     const router = useRouter();
@@ -108,6 +110,7 @@
     import { onMounted } from 'vue'
     import { initFlowbite } from 'flowbite'
 
+   
     useHead({
         title: "Processos Seletivos de Alunos"
     })
@@ -187,6 +190,25 @@ const getTotalProcessos = async () => {
 };
 
 const qtdProcessos = await getTotalProcessos();
+
+const pagina = ref(1);
+const servidores = ref({})
+
+async function carregaServidores(numPagina: number) {
+  useDirectusItems().getItems({
+      collection: "servidores",
+      params: {
+        limit: 10,
+        page: numPagina,
+        sort: "nome"
+      },
+    }).then((data) => servidores.value = data);
+}
+
+watch(
+  pagina,(newValue)=>carregaServidores(newValue)
+  ,{ immediate: true }
+)
 
 
 

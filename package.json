@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@nuxtjs/tailwindcss": "^6.6.8",
+    "@pinia/nuxt": "^0.4.11",
     "flowbite": "^1.6.5",
     "pinia": "^2.0.36"
   }

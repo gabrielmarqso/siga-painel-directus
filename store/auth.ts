@@ -1,15 +1,14 @@
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia'
 
 interface AuthState {
-    loggedIn: boolean;
-    user: object;
+    loggedIn: boolean
+    user: object
 }
 
 export const useAuth = defineStore('auth', {
     state: (): AuthState => ({
         loggedIn: false,
         user: {},
-
     }),
 
     getters: {
@@ -18,42 +17,39 @@ export const useAuth = defineStore('auth', {
     },
 
     actions: {
-        async login({ email, password, redirect }) {
-            const router = useRouter();
-            const { $directus } = useNuxtApp()
+        async login({ email, password }) {
+            const router = useRouter()
+            const { login } = useDirectusAuth()
 
             try {
-                //Tentativa de login
-                const response = await $directus.auth.login({
+                // Try to login
+                const response = await login({
                     email,
                     password,
                 })
 
-                //Se o login for bem sucedido aparece os dados pro usuário
+                // If login was successful, fetch the users data
+                const user = await useDirectusUser()
 
-                const user = await $directus.users.me.read({
-                    fields: ['*'],
-                })
+                // Update the auth store with the user data
+                this.loggedIn = true
+                this.user = user
 
-
-                this.loggedIn = true;
-                this.user = user;
-
-                if (redirect) {
-                    router.push(redirect)
+                // If there's a redirect, send the user there
+                if (this.loggedIn) {
+                    router.push('/processos-seletivos')
                 }
             } catch (e) {
                 console.log(e)
-                throw new Error('E-mail ou senha incorretos')
+                throw new Error('Wrong email address or password')
             }
         },
         async logout() {
-            const router = useRouter();
-            const { $directus } = useNuxtApp()
-
+            const router = useRouter()
+            const { logout } = useDirectusAuth()
             try {
-                //Tenta fazer logout
-                const response = await $directus.auth.logout()
+                // Try to logout
+                const response = await logout()
 
                 // Remove the auth_expires_at cookie that is left over from the logout
                 const authExpiration = useCookie('auth_expires_at')
@@ -68,22 +64,15 @@ export const useAuth = defineStore('auth', {
                 console.log(e)
                 throw new Error('Issue logging out')
             }
-
         },
-
         async getUser() {
-            const { $directus } = useNuxtApp()
 
             try {
-                const user = await $directus.users.me.read({
-                    fields: ['*'],
-
-                })
-
-                //atualiza a situação da autenticação
-                this.loggedIn = true;
-                this.user = user;
-
+                // Try to fetch the user data
+                const user = await useDirectusUser();
+                // Update the auth store with the user data
+                this.loggedIn = true
+                this.user = user
             } catch (e) {
                 console.log(e)
             }
@@ -91,6 +80,5 @@ export const useAuth = defineStore('auth', {
         async resetState() {
             this.$reset()
         },
-
     },
 })

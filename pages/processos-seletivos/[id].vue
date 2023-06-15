@@ -251,6 +251,8 @@
         };
     
         fetchTurmas();
+
+        
     
     </script>
 

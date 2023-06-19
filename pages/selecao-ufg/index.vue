@@ -43,9 +43,7 @@
                     <th scope="col" class="px-6 py-3">
                         Turma
                     </th>
-                    <th scope="col" class="px-6 py-3">
-                        
-                    </th>
+                
 
                 </thead>
 
@@ -194,15 +192,8 @@
         return nomesTurmas;
        
     }
-    
-
 
     fetchEditais();
-
-   
-
-
-    
 
 </script>
 

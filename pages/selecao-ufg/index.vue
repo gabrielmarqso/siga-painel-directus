@@ -96,6 +96,11 @@
     const { expires } = useDirectusToken();
     const { getItems } = useDirectusItems();
 
+
+    definePageMeta({
+         middleware: ["directus-auth"],
+    })
+    
     useHead({
         title: "Editais de Seleção da UFG"
     })

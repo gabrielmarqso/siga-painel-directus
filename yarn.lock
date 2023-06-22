@@ -3495,10 +3495,10 @@ nuxi@3.4.3:
   optionalDependencies:
     fsevents "~2.3.2"
 
-nuxt-directus@^5.2.1:
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/nuxt-directus/-/nuxt-directus-5.2.1.tgz#543f179b6b974ef660be4ba0382bcff32474e12f"
-  integrity sha512-xohGmQH6lLjs/06j8htGL+QeSL69qz3XNiknZOQM28vMpoJuGwentE+rJS4B9ECS74nA9UCXGjgJ43a73y/5QA==
+nuxt-directus@^5.4.4:
+  version "5.4.4"
+  resolved "https://registry.yarnpkg.com/nuxt-directus/-/nuxt-directus-5.4.4.tgz#25e12276881521e31796e3be54b6d0556fbb3c3c"
+  integrity sha512-zZ8pnfcyUClE7f462ML5vYafHCnaR8VPXbiPodapQU0Nso4OQfJLwFMgtYyNuvo6EBTYogzc1CGS2M2fuo1opA==
   dependencies:
     "@nuxt/kit" "^3.0.0"
 

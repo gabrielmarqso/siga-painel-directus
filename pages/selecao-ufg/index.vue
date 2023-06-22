@@ -76,7 +76,7 @@
                     </td>
 
                     <td class="px-6 py-4" >
-                        {{  getTurmaNome(edital.turma) }}
+                        {{ getTurmaNome(edital.turma) }}
                     </td>
 
                     </tr>
@@ -103,6 +103,7 @@
     onMounted(() => {
         initFlowbite();
         getTurmas();
+    
     })
 
     const editais = ref([]);
@@ -171,29 +172,26 @@
         }
     }
     
-    getTurmas();
 
-    async function getTurmaNome(turmaIds) {
-        if (Array.isArray(turmaIds) && turmaIds.length > 0) {
-            const nomesTurmas = [];
-            for (const turmaId of turmaIds) {
-                const turma = turmas.value.find((turma) => turma.id === turmaId);
-                    nomesTurmas.push(turma.Nome_da_Turma);
-            }
-            return nomesTurmas.join(", ");
-        }
-        return "";
-    }
+    function getTurmaNome(turmaIds) {
+        const nomesTurmas = turmaIds.map((turmaId) => {
+            const turma = turmas.value.find((t) => t.id === turmaId);
+            return turma ? turma.Nome_da_Turma : '';
+        });
+
+        return nomesTurmas.filter((nome) => nome !== '').join(', ');
+    }   
 
     async function exampleUsage(valores) {
         await getTurmas();
         const turmaIds = valores; // Exemplo de array de IDs de turmas
         const nomesTurmas = getTurmaNome(turmaIds);
-        return nomesTurmas;
-       
+        return nomesTurmas; 
     }
 
     fetchEditais();
+
+    
 
 </script>
 

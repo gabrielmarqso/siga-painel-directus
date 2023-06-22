@@ -7,9 +7,9 @@
 
 <script setup>
     const router = useRouter();
-    // definePageMeta({
-    //     middleware: ["auth"]
-    // })
+    definePageMeta({
+         middleware: ["directus-auth"],
+    })
 
     const token = useDirectusToken();
     const user = useDirectusUser();

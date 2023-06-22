@@ -31,6 +31,10 @@
     import { onMounted } from 'vue'
     import { initFlowbite } from 'flowbite'
 
+    definePageMeta({
+         middleware: ["directus-auth"],
+    })
+
 
     onMounted(() => {
     initFlowbite();

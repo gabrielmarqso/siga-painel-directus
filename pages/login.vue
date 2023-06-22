@@ -8,7 +8,7 @@
     
         <div class="flex items-center justify-center h-full">
             
-            <form class="rounded-lg px-10 py-8 w-full max-w-md mx-auto" @submit.prevent="login" >
+            <form class="rounded-lg px-10 py-8 w-full max-w-md mx-auto" @submit.prevent="submitLogin" >
                 <!-- <VAlert v-if="error" type="error" class="mb-4"> Error: {{ error }} </VAlert>
                 <div v-if="loading" class="flex items-center justify-center flex-1">
                 <VLoading class="w-24 h-24 text-primary-600" />
@@ -37,70 +37,46 @@
     </template>
     
     <script setup lang="ts">
-        // const { login } = useDirectusAuth();
-        const { token } = useDirectusToken();
-        const router = useRouter();
-        import { onMounted, ref } from 'vue'
-        import { initFlowbite } from 'flowbite'
-    
-        import { useAuth } from '~~/store/auth'
-        const  auth = useAuth()
-        const email = ref()
-        const password = ref()
-        const error = ref(null)
-        const loading = ref(false)
-    
-        async function login(){
-            loading.value = true
-            error.value = null
-            
-            try {
-                await auth.login({
-                    email: email.value,
-                    password: password.value,
-                })
-    
-                email.value = ''
-                password.value = ''
-    
-            }catch(e){
-                error.value = e.message
-            } finally {
-                loading.value = false
+        
+        const { login } = useDirectusAuth();
+        const user = useDirectusUser();
+        const error = useError();
+        const route = useRoute();
+
+        const showPassword = ref(false);
+        const passwordType = ref("password")
+        const email = ref("");
+        const password = ref("");
+        
+        const togglePasswordType = () => {
+            showPassword.value = !showPassword.value;
+            if (!showPassword.value){
+                passwordType.value = "password"
+            } else {
+                passwordType.value = "text"
             }
-        }
+        };
+
+        const submitLogin = async () => {
+
+            try{
+                await login({
+                    email: email.value,
+                    password: password.value
+                });
     
-    
+                setTimeout(async () => {
+                    await navigateTo("/processos-seletivos", {redirectCode: 200});
+                    
+                }, 2000);
+            }catch(err){
+                console.log(err);
+            }
+        };
+
         useHead({
             title: 'Login - Cadastro PSA'
-        })
-    
-        // definePageMeta({
-        //     middleware: ["auth"]
-        // });
-    
-        const consoleError = ref(false);
-    
-        // let email = '';
-        // let password = '';
-    
-    
-        // onMounted(() => {
-        //     initFlowbite();
-        // })  
-    
-        // const onSubmit = async () => {
-        // try {
-        //     login({ email: email, password: password }).then(() =>{
-        //         //navigateTo('/processos-seletivos');
-        //     });
-        // } catch (error) {
-        //     consoleError.value = true;
-        // }
-    
-        // };
-    
-    
+        });
         
     </script>
     

@@ -88,6 +88,10 @@ import { getTrailingCommentRanges } from 'typescript';
 const { expires } = useDirectusToken();
 const { getItems } = useDirectusItems();
 
+definePageMeta({
+         middleware: ["directus-auth"],
+    })
+
 useHead({
     title: "Comparativo de Editais"
 })

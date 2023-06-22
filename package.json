@@ -11,7 +11,7 @@
   "devDependencies": {
     "@types/node": "^18",
     "nuxt": "^3.4.3",
-    "nuxt-directus": "^5.2.1",
+    "nuxt-directus": "^5.4.4",
     "typescript": "^5.0.4"
   },
   "dependencies": {

@@ -100,7 +100,6 @@
 
 <script setup lang="ts">
 
-
     import { ref , watch} from 'vue';
     const { getItems } = useDirectusItems();
     const router = useRouter();
@@ -110,10 +109,16 @@
     import { onMounted } from 'vue'
     import { initFlowbite } from 'flowbite'
 
+
+    definePageMeta({
+         middleware: ["directus-auth"],
+    })
    
     useHead({
         title: "Processos Seletivos de Alunos"
     })
+
+    
 
     console.log(expires);
 
@@ -163,7 +168,7 @@ const fetchProcessos = async () => {
         offset: (currentPage.value - 1) * itemsPerPage.value,
       },
     });
-
+    
     processos.value = items;
   } catch (e) {
     console.error(e);

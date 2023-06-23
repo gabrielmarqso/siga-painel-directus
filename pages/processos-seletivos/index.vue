@@ -100,11 +100,14 @@
 
 <script setup lang="ts">
 
+
     import { ref , watch} from 'vue';
     const { getItems } = useDirectusItems();
     const router = useRouter();
 
     const { expires } = useDirectusToken();
+
+    const { refreshTokens } = useDirectusToken();
 
     import { onMounted } from 'vue'
     import { initFlowbite } from 'flowbite'
@@ -118,12 +121,12 @@
         title: "Processos Seletivos de Alunos"
     })
 
-    
-
     console.log(expires);
 
     onMounted(() => {
         initFlowbite();
+        refreshTokens();
+
     })
 
     const currentPage = ref(1);

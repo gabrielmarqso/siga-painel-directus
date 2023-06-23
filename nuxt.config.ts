@@ -6,9 +6,17 @@ export default defineNuxtConfig({
         '@nuxtjs/tailwindcss',
         'nuxt-directus',
         '@pinia/nuxt',
+        '@nuxtjs/apollo'
     ],
     directus: {
         url: "https://siga.go.gov.br/editais-psa/"
+    },
+    apollo: {
+        clients: {
+            default: {
+                httpEndpoint: "https://siga.go.gov.br/editais-psa/graphql"
+            }
+        }
     },
 
     vite: {

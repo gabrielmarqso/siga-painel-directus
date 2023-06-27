@@ -12,4 +12,6 @@ export default defineNuxtRouteMiddleware((to) => {
             },
         })
     }
+
+
 })

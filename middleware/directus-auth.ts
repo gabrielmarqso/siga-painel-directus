@@ -16,15 +16,12 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
             console.log("Refreshing token")
             const auth = await refreshTokens()
             console.log(auth)
+            if (auth === null) throw new Error('Refresh token failed')
             onLogin(auth?.access_token)
         } catch {
-
-            return navigateTo({
-                path: "/login",
-                query: {
-                    redir: to.path,
-                },
-            });
+            console.log("está printando")
+            return navigateTo('/login');
         }
+
     }
 });

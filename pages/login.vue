@@ -67,12 +67,14 @@
     
                 setTimeout(async () => {
                     await navigateTo("/processos-seletivos", {redirectCode: 200});
+                    window.location.reload();
                     
-                }, 2000);
+                }, 1000);
             }catch(err){
                 console.log(err);
             }
         };
+
 
         useHead({
             title: 'Login - Cadastro PSA'

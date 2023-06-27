@@ -24,4 +24,8 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
         }
 
     }
+
+    if (user.value && to.path === '/') return navigateTo('/processos-seletivos')
+
+
 });
